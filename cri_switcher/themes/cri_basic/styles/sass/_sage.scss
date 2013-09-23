@@ -1,0 +1,183 @@
+@import "foundation";
+@import "settings";
+
+// Global Mixins
+
+@mixin theme_bg ($text) {
+	background: url('../../images/#{$text}_bg.png') repeat-x !important;
+}
+@mixin nav_bg ($hex, $text) {
+	background: $hex url('../../images/#{$text}_nav.png') repeat-x;
+}
+@mixin footer_bg ($hex, $text) {
+	background: $hex url('../../images/#{$text}_footer.jpg') repeat;
+}
+@mixin lighter ($hex,$percent) {
+	color: lighten($hex, $percent);
+}
+
+// Theme Color Settings
+$mainColor: $sage;
+$secondaryColor: $sage_second;
+$contrastColor: $sage_contrast;
+
+
+// Theme Styles	
+
+body {
+	$textColor:sage;
+	@include theme_bg($textColor);
+	
+	header {
+		h1 {
+			font-family: $heading-font;
+		} /* end h1 */
+		h2 {
+			font-family: $heading-font;
+			a {
+				color: darken($mainColor,30%);
+				&:hover {
+					color: darken($mainColor,10%);
+				} /* end hover */
+			} /* end a */
+		} /* end h2 */
+		h3 {
+			font-family: $heading-font;
+		} /* end h3 */
+		h4 {
+			text-align: right;
+			padding: 0 !important;
+			p {
+				font-family: $subheading-font-two;
+				display: inline;
+				font-size: 75%;
+			}
+		} /* end h4 */
+		h5 {
+			font-family: $subheading-font;
+			text-align: right;
+		} /* end h5 */
+		h6 {
+			font-family: $subheading-font;
+			text-align: right;
+		} /* end h6 */
+		p {
+			font-family: $subheading-font;
+			text-align: right;
+			font-size: 15px;
+			display: block;
+		} /* end p */
+		[class*="foundicon-"]:before {
+			color: darken($mainColor,30%) !important;
+			position: relative;
+			top: 4px;
+			font-size: inherit;
+		} /* end icon */
+	} /* end header */
+
+
+	.nav-bar {
+		@include nav_bg($mainColor,$textColor);
+		margin-top: -18px;
+		position: relative;
+		.nav {
+			@include column(12, center);
+		} /* end nav */
+		
+		ul {
+			@include outerRow();
+			background-color: none;
+			
+			li {
+				border: none;
+				&:hover{
+					background-color: transparent;
+				}/* end li:hover */
+				&:first-child {
+					background-color: transparent;
+				} /* end li:first-child */
+				&:last-child {
+					border: none;
+				} /* end li:last-child */
+				a {
+					color: darken($mainColor,20%);
+					&:hover {
+						color: darken($mainColor,50%);
+						background-color: transparent;
+					} /* end a:hover */
+				} /* end a */
+			}/* end li */
+			
+			& li.active {
+				background-color: transparent;
+				&:hover {
+					background-color: transparent;
+				} /* end a:hover */
+				
+				a {
+					color: lighten($mainColor,5%);
+					&:first-child {
+						background-color: transparent;
+						&:hover {
+							background-color: transparent;
+						} /* end a:hover */
+					} /* end li:first-child */
+				} /* end a */
+			} /* end li.active */
+			
+		} /* end ul */
+	} /* end nav-bar */
+	
+	section.outer-section {
+		.inner-section {
+			@include column(11, center);
+			background-color: #fff;
+			position: relative;
+			top: -2px;
+			z-index: 0;
+			-moz-box-shadow: 0 -1px 10px $contrastColor;
+			-webkit-box-shadow: 0 -1px 10px $contrastColor;
+			box-shadow: 0 -1px 10px $contrastColor;
+			aside.right {
+				min-height: 425px;
+				background: url(../../images/#{$textColor}_div.png) no-repeat left top;
+			} /* end right sidebar */
+			aside.left {
+				min-height: 425px;
+				background: url(../../images/#{$textColor}_div.png) no-repeat right top;
+			} /* end right sidebar */
+			li {
+				position: relative;
+				left: 18px;	
+			} /* end inner section li */
+		} /* end inner section */
+	} /* end content */
+	
+	footer {
+		@include footer_bg($mainColor,$textColor);
+		text-align: center;
+		@include lighter($mainColor,25%);
+		& .row:first-of-type {
+			padding-top: 25px;
+		}
+		a {
+			color: lighten($mainColor,18%);
+			&:hover {
+				color: darken($mainColor,20%);
+			}
+		}
+		.copy {
+			margin-top: 30px;
+			small {
+				font-size: .85em !important;
+			}
+		}
+		.lower {
+			margin-top: 10px;
+		}
+		.bottom {
+			padding-bottom: 25px;
+		} /* end bottom */
+	} /* end footer */
+	
+} /* end body */

@@ -1,0 +1,2 @@
+CRI Basic Theme
+A simple, responsive Concrete5 Theme with six color schemes: blue, bluegray, gold, gray, sage and sand.
